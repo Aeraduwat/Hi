@@ -16,9 +16,9 @@ import org.gjt.mm.mysql.Driver;
  */
 public class Conectar {
     Connection conect;
-  //  String url ="jdbc:mysql://sql60.hostinger.es/phpmyadmin//DRONES";
-  //  String user="u822458886_invek";
-  //  String pass="^ZiQ]W=~8C94";
+  //  String url ="ec2-54-235-240-92.compute-1.amazonaws.com/dfge9qn4ornl1c/dfge9qn4ornl1c";
+  //  String user="wronzhlqbnglhn";
+  //  String pass="eb9fa4830b4ebe2812988c85744d2bc159a9ffee0aff0904b0e63b406c2d7e6e";
     String url ="jdbc:mysql://localhost/inventario";
     String user="root";
     String pass="";
