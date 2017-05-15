@@ -69,7 +69,7 @@ public class daoDron {
     }
 
     public void Agregar(Dron dron) {
-       
+       /*plop*/
         Conectar cc= new Conectar();
         Connection cn = cc.obtener_conexion();
         String Query = "INSERT INTO drones VALUES ("+
