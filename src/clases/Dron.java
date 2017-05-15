@@ -30,9 +30,9 @@ public class Dron {
     private String  obs;
     private String otros;
     private String estado;
-    private String estado_actual;
+    private String fecha_estado;
 
-    public Dron(String equipo, String marca, String num_serie, Integer cant, Integer helice, Integer gimball, Integer bateria, Integer control, Integer adaptador, Integer mochila, Integer protector_helice, Integer helice_repuesto, Integer cable_usb, Integer cargador, Integer enchufe_cargador, Integer adaptador_bateria, String obs, String otros, String estado) {
+    public Dron(String equipo, String marca, String num_serie, Integer cant, Integer helice, Integer gimball, Integer bateria, Integer control, Integer adaptador, Integer mochila, Integer protector_helice, Integer helice_repuesto, Integer cable_usb, Integer cargador, Integer enchufe_cargador, Integer adaptador_bateria, String obs, String otros, String estado,String fecha_estado) {
         this.equipo = equipo;
         this.marca = marca;
         this.num_serie = num_serie;
@@ -52,6 +52,7 @@ public class Dron {
         this.obs = obs;
         this.otros = otros;
         this.estado = estado;
+        this.fecha_estado = fecha_estado;
     }
 
     public Dron(Dron dron) {
@@ -74,18 +75,18 @@ public class Dron {
         this.obs = dron.getObs();
         this.otros = dron.getOtros();
         this.estado = dron.getEstado();
-        this.estado_actual = dron.getEstado_actual();
+        this.fecha_estado = dron.getFecha_estado();
     }
 
     public Dron() {
     }
 
-    public String getEstado_actual() {
-        return estado_actual;
+    public String getFecha_estado() {
+        return fecha_estado;
     }
 
-    public void setEstado_actual(String estado_actual) {
-        this.estado_actual = estado_actual;
+    public void setFecha_estado(String fecha_estado) {
+        this.fecha_estado = fecha_estado;
     }
 
     public Integer getHelice() {

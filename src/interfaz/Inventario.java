@@ -91,7 +91,7 @@ public class Inventario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_Inventario);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 180, 840, 360);
+        jScrollPane1.setBounds(20, 180, 840, 340);
 
         lbl_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Screenshot_2.png"))); // NOI18N
         jPanel1.add(lbl_img);
@@ -187,26 +187,26 @@ public class Inventario extends javax.swing.JFrame {
        Dron dron = new Dron(bsn.CargarDatos(num_serie));
        
        Detalle ="Detalle Producto:\n"
-                + " Equipo ="+dron.getEquipo() + "\n" 
-                + " Modelo-marca ="+dron.getMarca()+"\n"
-                + " Nº de serie ="+dron.getNum_serie()+"\n" 
-                + " Cantidad ="+dron.getCant()+"\n" 
-                + " Helice ="+dron.getHelice()+"\n" 
-                + " Control ="+dron.getControl()+"\n" 
-                + " Bateria ="+dron.getBateria()+"\n" 
-                + " Protectores de helice ="+dron.getProtector_helice()+"\n" 
-                + " Adaptador ="+dron.getAdaptador()+"\n" 
-                + " Maleta o Mochila ="+dron.getMochila()+"\n" 
-                + " Gimball ="+dron.getGimball()+"\n" 
-                + " Helice repuesto ="+dron.getHelice_repuesto()+"\n" 
-                + " Cables usb ="+dron.getCable_usb()+"\n" 
-                + " Cargador baterias ="+dron.getCargador()+"\n" 
-                + " Enchufe cargador="+dron.getEnchufe_cargador()+"\n" 
-                + " Otros ="+dron.getOtros()+"\n" 
-                + " Observaciones ="+dron.getObs()+"\n" 
-                + " Adaptador_bateria="+dron.getAdaptador_bateria()+"\n" 
-                + " Estado actual ="+dron.getEstado()+"\n" 
-                + " Estado_2 ="+dron.getEstado()+"";       
+                + " Equipo = "+dron.getEquipo() + "\n" 
+                + " Modelo-marca = "+dron.getMarca()+"\n"
+                + " Nº de serie = "+dron.getNum_serie()+"\n" 
+                + " Cantidad = "+dron.getCant()+"\n" 
+                + " Helice = "+dron.getHelice()+"\n" 
+                + " Control = "+dron.getControl()+"\n" 
+                + " Bateria = "+dron.getBateria()+"\n" 
+                + " Protectores de helice = "+dron.getProtector_helice()+"\n" 
+                + " Adaptador = "+dron.getAdaptador()+"\n" 
+                + " Maleta o Mochila = "+dron.getMochila()+"\n" 
+                + " Gimball = "+dron.getGimball()+"\n" 
+                + " Helice repuesto = "+dron.getHelice_repuesto()+"\n" 
+                + " Cables usb = "+dron.getCable_usb()+"\n" 
+                + " Cargador baterias = "+dron.getCargador()+"\n" 
+                + " Enchufe cargador= "+dron.getEnchufe_cargador()+"\n" 
+                + " Otros = "+dron.getOtros()+"\n" 
+                + " Observaciones = "+dron.getObs()+"\n" 
+                + " Adaptador_bateria= "+dron.getAdaptador_bateria()+"\n" 
+                + " Estado actual = "+dron.getEstado()+"\n" 
+                + " Fecha de Actualizacion de Estado = "+dron.getFecha_estado()+"";       
        
         JOptionPane.showMessageDialog(null,Detalle);
     }//GEN-LAST:event_btn_detallesActionPerformed

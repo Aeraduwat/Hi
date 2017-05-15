@@ -8,6 +8,7 @@ package interfaz;
 import bsn.bsnDron;
 import clases.Dron;
 import interfaz.Inventario;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         this.setDefaultCloseOperation(0);
         this.setLocationRelativeTo(null);
         lbl_titulo.setText("NUEVO DRONE:");
+        txt_fecha_estado.setText(AsignarFecha());
     }
 
     public nuevo_dron(java.awt.Frame parent, boolean modal, String num_serie) {
@@ -42,6 +44,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         MostrarDatos(num_serie);
         JLabel lbl_estado_act = new JLabel();
         JTextField txt_estado_act = new JTextField();
+        txt_fecha_estado.setText(AsignarFecha());
         //lbl_estado_act.setAlignmentX(0);
     }
 
@@ -104,6 +107,8 @@ public class nuevo_dron extends javax.swing.JDialog {
         txt_estado = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         a = new javax.swing.JButton();
+        txt_fecha_estado = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(842, 601));
@@ -239,7 +244,7 @@ public class nuevo_dron extends javax.swing.JDialog {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(540, 110, 30, 360);
+        jSeparator1.setBounds(540, 110, 30, 390);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator2);
@@ -296,6 +301,18 @@ public class nuevo_dron extends javax.swing.JDialog {
         jPanel1.add(a);
         a.setBounds(600, 20, 160, 50);
 
+        txt_fecha_estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_fecha_estadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_fecha_estado);
+        txt_fecha_estado.setBounds(660, 480, 130, 30);
+
+        jLabel21.setText("Fecha Estado:");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(560, 480, 90, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,6 +340,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         String obs = txt_obs.getText();
         String otros = txt_otros.getText();
         String estado = txt_estado.getText();
+        String fecha_estado = txt_fecha_estado.getText();
 
         Integer cant = Integer.parseInt(txt_cantidad.getText());
         Integer adap_bat = Integer.parseInt(cont_adap_bateria.getValue().toString());
@@ -341,7 +359,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         if (num_serie.equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese n° de serie del producto");
         } else if (this.getTitle().equals("NUEVO DRONE:")) {
-            Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado);
+            Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado,fecha_estado);
             bsn.Agregar(dron);
 
             if (JOptionPane.showConfirmDialog(this, "Agregar otro Producto?") == JOptionPane.OK_OPTION) {
@@ -352,7 +370,7 @@ public class nuevo_dron extends javax.swing.JDialog {
                 inventario.setVisible(true);
             }
         }else{
-           Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado);
+           Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado, fecha_estado);
            bsn.Actualizar(dron);
            this.dispose();
            inventario = new Inventario();
@@ -379,6 +397,10 @@ public class nuevo_dron extends javax.swing.JDialog {
     private void cont_helicesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cont_helicesPropertyChange
 
     }//GEN-LAST:event_cont_helicesPropertyChange
+
+    private void txt_fecha_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fecha_estadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fecha_estadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,6 +472,7 @@ public class nuevo_dron extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -465,6 +488,7 @@ public class nuevo_dron extends javax.swing.JDialog {
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_estado;
+    private javax.swing.JTextField txt_fecha_estado;
     private javax.swing.JTextField txt_marca;
     private javax.swing.JTextField txt_num_serie;
     private javax.swing.JTextArea txt_obs;
@@ -523,8 +547,18 @@ public class nuevo_dron extends javax.swing.JDialog {
         txt_obs.setText(dron.getObs());
         cont_adap_bateria.setValue(dron.getAdaptador_bateria());
         txt_estado.setText(dron.getEstado());
+        txt_fecha_estado.setText(dron.getFecha_estado());
         //dron.getEstado_actual();
 
+    }
+
+    private String AsignarFecha() {
+      Calendar calendario = Calendar.getInstance();
+      int mes = calendario.get(Calendar.MONTH) +1;
+      String fecha = calendario.get(Calendar.DATE) +"/"+
+                     mes +"/"+
+                    calendario.get(Calendar.YEAR);
+      return fecha;
     }
 
 }

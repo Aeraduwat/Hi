@@ -92,7 +92,7 @@ public class daoDron {
                        "'"+dron.getObs()+"',"+
                        dron.getAdaptador_bateria()+","+
                        "'"+dron.getEstado()+"',"+
-                       "'"+dron.getEstado()+"')";
+                       "'"+dron.getFecha_estado()+"')";
         
         try {
             
@@ -163,7 +163,7 @@ public class daoDron {
             dron.setObs(rs.getString(17));
             dron.setAdaptador_bateria(Integer.parseInt(rs.getString(18)));
             dron.setEstado(rs.getString(19));
-            dron.setEstado_actual(rs.getString(20));
+            dron.setFecha_estado(rs.getString(20));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
@@ -197,7 +197,7 @@ public class daoDron {
                 + "observaciones ='"+dron.getObs()+"',"
                 + "adaptador_bateria="+dron.getAdaptador_bateria()+","
                 + "estado_actual ='"+dron.getEstado()+"',"
-                + "estado_2 ='"+dron.getEstado()+"' "
+                + "estado_2 ='"+dron.getFecha_estado()+"' "
                 + "WHERE num_serie ='"+dron.getNum_serie()+"'";
         
         try {
