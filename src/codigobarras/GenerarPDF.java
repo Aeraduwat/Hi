@@ -89,7 +89,7 @@ public class GenerarPDF {
         code128.setCodeType(Barcode128.CODE128);
         code128.setTextAlignment(Element.ALIGN_CENTER);
         
-        Image image = code128.createImageWithBarcode(cimg, BaseColor.BLACK, BaseColor.YELLOW);
+        Image image = code128.createImageWithBarcode(cimg, BaseColor.BLACK, BaseColor.BLUE);
         float sacler = ((document.getPageSize().getWidth() - document.leftMargin()-document.rightMargin()-0)/ image.getWidth()*60);
         image.scalePercent(sacler);
         image.setAlignment(Element.ALIGN_CENTER);
@@ -97,7 +97,7 @@ public class GenerarPDF {
     }
     
     private String formatearCodigo(String num){
-        NumberFormat form = new DecimalFormat();
+        NumberFormat form = new DecimalFormat("0000000");
         return form.format((num != null)? Integer.parseInt(num) : 0000000);
     }
 }
