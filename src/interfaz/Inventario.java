@@ -253,7 +253,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel txt_titulo;
     // End of variables declaration//GEN-END:variables
 
-        public void ActualizarTabla(){
+public void ActualizarTabla(){
            tbl_Inventario.removeAll();
            tbl_Inventario.setModel(bsn.Datostabla());
         }
