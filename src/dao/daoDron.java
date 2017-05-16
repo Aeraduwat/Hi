@@ -40,7 +40,7 @@ public class daoDron {
         Connection cn = cc.obtener_conexion();
         
         try{
-            Statement st = cn.createStatement();
+             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(Query);
             
             String[] datos = new String[6];
