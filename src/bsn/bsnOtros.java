@@ -30,8 +30,8 @@ public class bsnOtros {
         dao.Eliminar(Otro);
     }
     
-    public void Modificar(otros Otro){
-        dao.Modificar(Otro);
+    public void Modificar(otros Otro,String Clave){
+        dao.Modificar(Otro,Clave);
     }
 
     public TableModel datostabla() {

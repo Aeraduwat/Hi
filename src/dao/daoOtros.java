@@ -39,7 +39,7 @@ public class daoOtros {
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(Query);
-            rs.next();
+        //    rs.next();
             while (rs.next()) {
                     datos[0] = rs.getString(1);
                     datos[1] = rs.getString(2);
@@ -87,7 +87,7 @@ public class daoOtros {
     public void Eliminar(otros Otro) {
         Conectar cc= new Conectar();
         Connection cn = cc.obtener_conexion();
-        String Query ="DELETE FROM otros WHERE equipo='"+Otro.getEquipo()+" and marca='"+Otro.getMarca()+"'";
+        String Query ="DELETE FROM otros WHERE equipo='"+Otro.getEquipo()+"' and marca='"+Otro.getMarca()+"'";
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(Query);
@@ -103,11 +103,15 @@ public class daoOtros {
         }
     }
 
-    public void Modificar(otros Otro) {
+    public void Modificar(otros Otro,String clave) {
+        String act_equipo = clave.substring(0,clave.indexOf("%"));
+        String act_marca = clave.substring(clave.indexOf("%")+1);
+        
         Conectar cc= new Conectar();
         Connection cn = cc.obtener_conexion();
         String Query ="UPDATE otros SET equipo='"+Otro.getEquipo()+
-                      "', marca='"+Otro.getMarca()+"', xxx='"+Otro.getXxx()+"',cantidad="+Otro.getCantidad();
+                      "', marca='"+Otro.getMarca()+"', xxx='"+Otro.getXxx()+"',cantidad="+Otro.getCantidad()+
+                       " WHERE equipo='"+act_equipo+"' and marca='"+act_marca+"'";
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(Query);

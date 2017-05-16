@@ -18,11 +18,13 @@ public class Inventario_otros extends javax.swing.JFrame {
     /**
      * Creates new form Inventario_otros
      */
+    String Clave ="";
     bsnOtros bsn = new bsnOtros();
     
     public Inventario_otros() {
         initComponents();
         tbl_otros.setModel(bsn.ModeloBase());
+        tbl_otros.setModel(bsn.datostabla());
         Habilitar(false);
         this.setLocationRelativeTo(null);
         btn_eliminar.setVisible(false);
@@ -57,6 +59,7 @@ public class Inventario_otros extends javax.swing.JFrame {
         count_cant = new javax.swing.JSpinner();
         btn_aceptar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +160,15 @@ public class Inventario_otros extends javax.swing.JFrame {
         jPanel1.add(btn_cancelar);
         btn_cancelar.setBounds(670, 450, 90, 30);
 
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(40, 470, 140, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,6 +189,7 @@ public class Inventario_otros extends javax.swing.JFrame {
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         Habilitar(true);
+        Limpiar();
         btn_modificar.setEnabled(false);
         btn_eliminar.setEnabled(false);
         btn_aceptar.setVisible(true);
@@ -185,6 +198,9 @@ public class Inventario_otros extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
       btn_nuevo.setEnabled(false);
+      Habilitar(true);
+      btn_aceptar.setVisible(true);
+      btn_cancelar.setVisible(true);
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -193,6 +209,8 @@ public class Inventario_otros extends javax.swing.JFrame {
         btn_modificar.setEnabled(true);
         btn_aceptar.setVisible(false);
         btn_cancelar.setVisible(false);
+        Limpiar();
+        btn_nuevo.setEnabled(true);
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
@@ -202,19 +220,26 @@ public class Inventario_otros extends javax.swing.JFrame {
         Integer cant = Integer.parseInt(count_cant.getValue().toString());
         otros Otro = new otros(equipo, marca, xxx, cant);
         
+        
         if (btn_nuevo.isEnabled()){
             bsn.Agregar(Otro);
             
         }else if(btn_modificar.isEnabled()){
-            bsn.Modificar(Otro);
+            bsn.Modificar(Otro,Clave);
         }
         ActualizarTabla();
+        Limpiar();
+        Habilitar(false);
+        btn_aceptar.setVisible(false);btn_cancelar.setVisible(false);btn_nuevo.setEnabled(true);
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void tbl_otrosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_otrosMouseReleased
         btn_eliminar.setVisible(true);
         btn_modificar.setVisible(true);
         Asignardatos(tbl_otros.getSelectedRow());
+        Habilitar(false);
+        btn_aceptar.setVisible(false);
+       btn_cancelar.setVisible(false);
     }//GEN-LAST:event_tbl_otrosMouseReleased
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
@@ -228,6 +253,12 @@ public class Inventario_otros extends javax.swing.JFrame {
             ActualizarTabla();
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Opciones opc = new Opciones();
+        opc.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,6 +302,7 @@ public class Inventario_otros extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JSpinner count_cant;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -291,13 +323,21 @@ public class Inventario_otros extends javax.swing.JFrame {
     }
 
     private void Asignardatos(int selectedRow) {
-         txt_marca.setText(tbl_otros.getModel().getValueAt(selectedRow, 0).toString());
-         txt_nombre.setText(tbl_otros.getModel().getValueAt(selectedRow, 1).toString());
+         txt_marca.setText(tbl_otros.getModel().getValueAt(selectedRow, 1).toString());
+         txt_nombre.setText(tbl_otros.getModel().getValueAt(selectedRow, 0).toString());
          count_cant.setValue(Integer.parseInt(tbl_otros.getModel().getValueAt(selectedRow, 3).toString()));
+         Clave = txt_nombre.getText()+"%"+txt_marca.getText();
     }
     
     private void ActualizarTabla(){
         tbl_otros.removeAll();
         tbl_otros.setModel(bsn.datostabla());
+    }
+
+    private void Limpiar() {
+        txt_marca.setText("");
+       txt_nombre.setText("");
+       count_cant.setValue(0);
+
     }
 }
