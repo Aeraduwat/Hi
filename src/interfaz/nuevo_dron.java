@@ -234,6 +234,11 @@ public class nuevo_dron extends javax.swing.JDialog {
 
         txt_obs.setColumns(20);
         txt_obs.setRows(5);
+        txt_obs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_obsKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txt_obs);
 
         jPanel1.add(jScrollPane1);
@@ -428,6 +433,10 @@ public class nuevo_dron extends javax.swing.JDialog {
 
     }//GEN-LAST:event_cont_helicesKeyReleased
 
+    private void txt_obsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_obsKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_obsKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -545,11 +554,6 @@ public class nuevo_dron extends javax.swing.JDialog {
         cont_maleta.setValue(0);
         cont_protec_helices.setValue(0);
 
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
     }
 
     private void MostrarDatos(String num_serie) {

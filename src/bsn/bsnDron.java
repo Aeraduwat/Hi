@@ -7,6 +7,7 @@ package bsn;
 
 import clases.Dron;
 import dao.daoDron;
+import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,5 +39,13 @@ public class bsnDron {
 
     public void Actualizar(Dron dron) {
         dao.Actualizar(dron);
+    }
+
+    public String[] ObtenerNombres() {
+       return dao.ObtenerNombres();
+    }
+    
+    public int CantidadNombres(){
+        return dao.cantidad();
     }
 }

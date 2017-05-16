@@ -7,6 +7,7 @@ package bsn;
 
 import clases.otros;
 import dao.daoOtros;
+import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -36,6 +37,14 @@ public class bsnOtros {
 
     public TableModel datostabla() {
         return dao.CargarDatos();
+    }
+
+    public String[] ObtenerNombres() {
+         return dao.ObtenerNombres();
+    }
+    
+    public int CantidadNombres(){
+        return dao.cantidad();
     }
                
 }

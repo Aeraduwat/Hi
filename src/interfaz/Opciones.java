@@ -5,6 +5,12 @@
  */
 package interfaz;
 
+import bsn.bsnDron;
+import bsn.bsnOtros;
+import dao.daoDron;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Felipe Alonso
@@ -13,6 +19,9 @@ public class Opciones extends javax.swing.JFrame {
 
     Inventario inventario;
     Inventario_otros otros;
+    bsnDron bsnD = new bsnDron();
+    bsnOtros bsnO = new bsnOtros();
+    
     public Opciones() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,11 +40,10 @@ public class Opciones extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(521, 257));
         setMinimumSize(new java.awt.Dimension(521, 257));
-        setPreferredSize(new java.awt.Dimension(521, 257));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(521, 257));
         jPanel1.setMinimumSize(new java.awt.Dimension(521, 257));
@@ -65,6 +73,15 @@ public class Opciones extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(80, 20, 180, 60);
 
+        jButton3.setText("aj");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(180, 240, 180, 70);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,9 +90,7 @@ public class Opciones extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,6 +108,17 @@ public class Opciones extends javax.swing.JFrame {
        otros.setVisible(true);
        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+        
+        
+        String mensaje = "Marque Productos:";
+        
+        Object[] msg = {mensaje, Check()};
+     //  Object[] msg = {mensaje,bsnO.ObtenerNombres(),bsnD.ObtenerNombres()};
+        JOptionPane.showConfirmDialog(null, msg,"TITULO",JOptionPane.YES_NO_OPTION);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,7 +158,32 @@ public class Opciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    
+    public JCheckBox[] Check(){
+        String nombreD[] = new String[bsnD.CantidadNombres()];
+        String nombreO[] = new String[bsnO.CantidadNombres()];
+        JCheckBox chkBox[] = new JCheckBox[bsnD.CantidadNombres() + bsnO.CantidadNombres()];
+        int i = 0;int j=0;
+        
+        nombreD = bsnD.ObtenerNombres();
+        nombreO = bsnO.ObtenerNombres();
+        
+        while(i< bsnD.CantidadNombres()){
+            chkBox[i] = new JCheckBox(nombreD[i]);add(chkBox[i]);
+            i++;
+        }
+        
+        while(j< bsnO.CantidadNombres()){
+            chkBox[i] = new JCheckBox(nombreD[j]);add(chkBox[i]);
+            j++;i++;
+        }
+
+        return chkBox;
+        
+    }
 }

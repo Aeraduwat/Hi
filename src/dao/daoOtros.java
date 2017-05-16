@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -127,6 +128,60 @@ public class daoOtros {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
+    }
+
+    public String[] ObtenerNombres() {
+        
+        //JCheckBox listado[] = new JCheckBox[cantidad()];
+        String nombres[] = new String[cantidad()];
+        Conectar cc= new Conectar();
+        Connection cn = cc.obtener_conexion(); 
+        String Query ="SELECT * FROM otros";
+        int i = 0;
+        try{
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            while(rs.next()){
+                nombres[i] = rs.getString("equipo") +" "+rs.getString("marca");
+                
+                i++;
+                
+            }
+
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try {
+                cn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        return nombres;
+    }
+
+    public int cantidad() {
+        Conectar cc= new Conectar();
+        Connection cn = cc.obtener_conexion(); 
+        int num =0;
+        String Query ="SELECT COUNT(*) cant from otros";
+         try{
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            rs.next();
+            num = Integer.parseInt(rs.getString("cant"));
+            
+
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try {
+                cn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        return num;
     }
     
     
