@@ -5,6 +5,12 @@
  */
 package interfaz;
 
+import bsn.bsnDron;
+import bsn.bsnOtros;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument.Content;
+
 /**
  *
  * @author Felipe Alonso
@@ -13,6 +19,9 @@ public class Opciones extends javax.swing.JFrame {
 
     Inventario inventario;
     Inventario_otros otros;
+    bsnDron bsnD = new bsnDron();
+    bsnOtros bsnO = new bsnOtros();
+    
     public Opciones() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -102,7 +111,10 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_gencodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gencodActionPerformed
-        
+       String mensaje = "";
+       Object[] msg = {mensaje,Check()};
+       
+       JOptionPane.showConfirmDialog(null, msg);
     }//GEN-LAST:event_btn_gencodActionPerformed
 
     /**
@@ -147,4 +159,26 @@ public class Opciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private JCheckBox[] Check() {
+        String NombreD[] = new String[bsnD.CantidadNombres()];
+        String NombreO[] = new String[bsnO.CantidadNombres()];
+        JCheckBox checkBox[] = new JCheckBox[bsnD.CantidadNombres()+bsnO.CantidadNombres()];
+        
+        NombreD = bsnD.ObtenerNombres();
+        NombreO = bsnO.ObtenerNombres();
+        int i=0;int j=0;
+        
+        while (i<bsnD.CantidadNombres()) {
+               checkBox[i] = new JCheckBox(NombreD[i]);add(checkBox[i]);
+               i++;
+        }
+        
+        while (j<bsnO.CantidadNombres()) {
+               checkBox[i] = new JCheckBox(NombreD[j]);add(checkBox[i]);
+               i++;j++;
+        }
+        
+        return checkBox;
+    }
 }
