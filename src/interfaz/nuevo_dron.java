@@ -31,7 +31,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         initComponents();
         this.setDefaultCloseOperation(0);
         this.setLocationRelativeTo(null);
-        lbl_titulo.setText("NUEVO DRONES:");
+        lbl_titulo.setText("NUEVO DRON:");
         txt_fecha_estado.setText(AsignarFecha());
     }
 
@@ -361,7 +361,7 @@ public class nuevo_dron extends javax.swing.JDialog {
 
         if (num_serie.equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese n° de serie del producto");
-        } else if (this.getTitle().equals("NUEVO DRONE:")) {
+        } else if (this.getTitle().equals("NUEVO DRON:")) {
             Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado,fecha_estado);
             bsn.Agregar(dron);
 
