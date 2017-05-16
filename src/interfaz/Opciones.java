@@ -102,7 +102,7 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_gencodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gencodActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_gencodActionPerformed
 
     /**
