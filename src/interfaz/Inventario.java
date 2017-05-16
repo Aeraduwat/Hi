@@ -33,6 +33,7 @@ public class Inventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         tbl_Inventario.setModel(bsn.ModeloBase());
         tbl_Inventario.setModel(bsn.Datostabla());
+        AsignarTotal();
       
     }
 
@@ -50,6 +51,7 @@ public class Inventario extends javax.swing.JFrame {
         btn_modificar = new javax.swing.JButton();
         lbl_total = new javax.swing.JLabel();
         btn_detalles = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(983, 604));
@@ -115,6 +117,7 @@ public class Inventario extends javax.swing.JFrame {
         jPanel1.add(btn_modificar);
         btn_modificar.setBounds(880, 190, 90, 60);
 
+        lbl_total.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         lbl_total.setText("total");
         jPanel1.add(lbl_total);
         lbl_total.setBounds(610, 550, 250, 40);
@@ -127,6 +130,15 @@ public class Inventario extends javax.swing.JFrame {
         });
         jPanel1.add(btn_detalles);
         btn_detalles.setBounds(30, 110, 150, 40);
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(30, 550, 180, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +182,7 @@ public class Inventario extends javax.swing.JFrame {
         } else if (JOptionPane.showConfirmDialog(null, "ESTA SEGURO DE ELIMINAR \n" + producto) == JOptionPane.OK_OPTION) {
             bsn.eliminar(num_serie);
             ActualizarTabla();
+            AsignarTotal();
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
@@ -211,6 +224,13 @@ public class Inventario extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,Detalle);
     }//GEN-LAST:event_btn_detallesActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Opciones opc = new Opciones();
+        opc.setVisible(true);
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -245,6 +265,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JButton btn_detalles;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_img;
@@ -253,9 +274,19 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel txt_titulo;
     // End of variables declaration//GEN-END:variables
 
-public void ActualizarTabla(){
+    public void ActualizarTabla(){
            tbl_Inventario.removeAll();
            tbl_Inventario.setModel(bsn.Datostabla());
+    }
+
+    public void AsignarTotal(){
+        Integer total=0;
+        for(int i=0;i < tbl_Inventario.getRowCount();i++){
+            
+            total = total + Integer.parseInt(tbl_Inventario.getModel().getValueAt(i, 3).toString().trim());
+          
+        lbl_total.setText("TOTAL :    "+total+" DRONES");
         }
+}
 
 }
