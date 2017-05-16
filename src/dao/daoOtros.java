@@ -7,8 +7,10 @@ package dao;
 
 import clases.Conectar;
 import clases.otros;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +25,7 @@ public class daoOtros {
         DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Equipo");
             modelo.addColumn("Marca");
-            modelo.addColumn("xxx");
+            modelo.addColumn("Detalle");
             modelo.addColumn("Cantidad");
         
         return modelo;
@@ -67,13 +69,13 @@ public class daoOtros {
         String Query ="INSERT INTO otros VALUES("
                 + "'"+ Otro.getEquipo()+ "',"
                 + "'"+ Otro.getMarca()+ "',"
-                + "'"+ Otro.getXxx()+ "',"
+                + "'"+ Otro.getDetalle()+ "',"
                 + Otro.getCantidad()+")";
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(Query);
             JOptionPane.showMessageDialog(null, "Insercion Exitosa");
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try {
@@ -92,7 +94,7 @@ public class daoOtros {
             Statement st = cn.createStatement();
             st.executeUpdate(Query);
             JOptionPane.showMessageDialog(null, "Eliminacion Exitosa");
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try {
@@ -110,13 +112,13 @@ public class daoOtros {
         Conectar cc= new Conectar();
         Connection cn = cc.obtener_conexion();
         String Query ="UPDATE otros SET equipo='"+Otro.getEquipo()+
-                      "', marca='"+Otro.getMarca()+"', xxx='"+Otro.getXxx()+"',cantidad="+Otro.getCantidad()+
+                      "', marca='"+Otro.getMarca()+"', detalle='"+Otro.getDetalle()+"',cantidad="+Otro.getCantidad()+
                        " WHERE equipo='"+act_equipo+"' and marca='"+act_marca+"'";
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(Query);
             JOptionPane.showMessageDialog(null, "Actualizacion Exitosa");
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try {

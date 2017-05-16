@@ -60,6 +60,8 @@ public class Inventario_otros extends javax.swing.JFrame {
         btn_aceptar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txt_detalle = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,9 +140,9 @@ public class Inventario_otros extends javax.swing.JFrame {
 
         jLabel3.setText("Cantidad:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(640, 280, 80, 30);
+        jLabel3.setBounds(650, 350, 80, 30);
         jPanel1.add(count_cant);
-        count_cant.setBounds(700, 280, 60, 30);
+        count_cant.setBounds(710, 350, 60, 30);
 
         btn_aceptar.setText("Aceptar");
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +151,7 @@ public class Inventario_otros extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_aceptar);
-        btn_aceptar.setBounds(650, 410, 130, 30);
+        btn_aceptar.setBounds(650, 430, 130, 30);
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +160,7 @@ public class Inventario_otros extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_cancelar);
-        btn_cancelar.setBounds(670, 450, 90, 30);
+        btn_cancelar.setBounds(670, 470, 90, 30);
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +170,12 @@ public class Inventario_otros extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(40, 470, 140, 40);
+
+        jLabel4.setText("Detale");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(650, 260, 60, 20);
+        jPanel1.add(txt_detalle);
+        txt_detalle.setBounds(650, 290, 140, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,9 +224,9 @@ public class Inventario_otros extends javax.swing.JFrame {
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         String equipo = txt_nombre.getText().toUpperCase();
         String marca = txt_marca.getText();
-        String xxx = "";
+        String detalle = "";
         Integer cant = Integer.parseInt(count_cant.getValue().toString());
-        otros Otro = new otros(equipo, marca, xxx, cant);
+        otros Otro = new otros(equipo, marca, detalle, cant);
         
         
         if (btn_nuevo.isEnabled()){
@@ -245,9 +253,9 @@ public class Inventario_otros extends javax.swing.JFrame {
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         String equipo = tbl_otros.getModel().getValueAt(tbl_otros.getSelectedRow(), 0).toString();
         String marca = tbl_otros.getModel().getValueAt(tbl_otros.getSelectedRow(), 1).toString();
-        String xxx = "";
+        String detalle = tbl_otros.getModel().getValueAt(tbl_otros.getSelectedRow(), 2).toString();
         Integer cant = Integer.parseInt(tbl_otros.getModel().getValueAt(tbl_otros.getSelectedRow(), 3).toString());
-        otros Otro = new otros(equipo, marca, xxx, cant);
+        otros Otro = new otros(equipo, marca, detalle, cant);
         if (JOptionPane.showConfirmDialog(null, "Desea eliminar "+equipo+" / "+marca) == JOptionPane.OK_OPTION){
             bsn.Eliminar(Otro);
             ActualizarTabla();
@@ -306,11 +314,13 @@ public class Inventario_otros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_img;
     private javax.swing.JTable tbl_otros;
+    private javax.swing.JTextField txt_detalle;
     private javax.swing.JTextField txt_marca;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JLabel txt_titulo;
@@ -320,11 +330,13 @@ public class Inventario_otros extends javax.swing.JFrame {
        txt_marca.setEnabled(b);
        txt_nombre.setEnabled(b);
        count_cant.setEnabled(b);
+       txt_detalle.setEnabled(b);
     }
 
     private void Asignardatos(int selectedRow) {
          txt_marca.setText(tbl_otros.getModel().getValueAt(selectedRow, 1).toString());
          txt_nombre.setText(tbl_otros.getModel().getValueAt(selectedRow, 0).toString());
+         txt_detalle.setText(tbl_otros.getModel().getValueAt(selectedRow, 2).toString());
          count_cant.setValue(Integer.parseInt(tbl_otros.getModel().getValueAt(selectedRow, 3).toString()));
          Clave = txt_nombre.getText()+"%"+txt_marca.getText();
     }
@@ -337,6 +349,7 @@ public class Inventario_otros extends javax.swing.JFrame {
     private void Limpiar() {
         txt_marca.setText("");
        txt_nombre.setText("");
+       txt_detalle.setText("");
        count_cant.setValue(0);
 
     }

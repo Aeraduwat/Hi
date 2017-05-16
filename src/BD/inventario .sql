@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2017 a las 23:30:49
+-- Tiempo de generación: 16-05-2017 a las 16:03:10
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -67,11 +67,19 @@ INSERT INTO `drones` (`equipo`, `modelo_marca`, `num_serie`, `cantidad`, `helice
 --
 
 CREATE TABLE `otros` (
-  `equipo` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `marca` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `xxx` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `equipo` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `marca` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `detalle` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
   `cantidad` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `otros`
+--
+
+INSERT INTO `otros` (`equipo`, `marca`, `detalle`, `cantidad`) VALUES
+('CAMARA', '3 DR solo', '', 2),
+('GIIMBALL', '3 DR SOLO', '', 6);
 
 --
 -- Índices para tablas volcadas

@@ -13,13 +13,13 @@ public class otros {
     
     private String equipo;
     private String marca;
-    private String xxx;
+    private String detalle;
     private Integer cantidad;
 
-    public otros(String equipo, String marca, String xxx, Integer cantidad) {
+    public otros(String equipo, String marca, String detalle, Integer cantidad) {
         this.equipo = equipo;
         this.marca = marca;
-        this.xxx = xxx;
+        this.detalle = detalle;
         this.cantidad = cantidad;
     }
 
@@ -39,12 +39,12 @@ public class otros {
         this.marca = marca;
     }
 
-    public String getXxx() {
-        return xxx;
+    public String getDetalle() {
+        return detalle;
     }
 
-    public void setXxx(String xxx) {
-        this.xxx = xxx;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public Integer getCantidad() {
