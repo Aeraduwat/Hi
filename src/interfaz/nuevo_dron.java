@@ -31,7 +31,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         initComponents();
         this.setDefaultCloseOperation(0);
         this.setLocationRelativeTo(null);
-        lbl_titulo.setText("NUEVO DRONE:");
+        lbl_titulo.setText("NUEVO DRONES:");
         txt_fecha_estado.setText(AsignarFecha());
     }
 
@@ -109,6 +109,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         a = new javax.swing.JButton();
         txt_fecha_estado = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        lbl_fecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(842, 601));
@@ -312,6 +313,8 @@ public class nuevo_dron extends javax.swing.JDialog {
         jLabel21.setText("Fecha Estado:");
         jPanel1.add(jLabel21);
         jLabel21.setBounds(560, 480, 90, 30);
+        jPanel1.add(lbl_fecha);
+        lbl_fecha.setBounds(660, 520, 130, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -485,6 +488,7 @@ public class nuevo_dron extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lbl_fecha;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_estado;
@@ -547,7 +551,8 @@ public class nuevo_dron extends javax.swing.JDialog {
         txt_obs.setText(dron.getObs());
         cont_adap_bateria.setValue(dron.getAdaptador_bateria());
         txt_estado.setText(dron.getEstado());
-        txt_fecha_estado.setText(dron.getFecha_estado());
+        txt_fecha_estado.setText(AsignarFecha());
+        lbl_fecha.setText(dron.getFecha_estado());
         //dron.getEstado_actual();
 
     }

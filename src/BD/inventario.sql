@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2017 a las 21:33:52
+-- Tiempo de generación: 15-05-2017 a las 23:30:49
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -54,12 +54,24 @@ CREATE TABLE `drones` (
 --
 
 INSERT INTO `drones` (`equipo`, `modelo_marca`, `num_serie`, `cantidad`, `helice`, `control`, `bateria`, `protectores_de_helice`, `adaptador`, `maleta`, `gimball`, `helice_repuesto`, `cables_usb`, `cargador_baterias`, `enchufe_cargador`, `otros`, `observaciones`, `adaptador_bateria`, `estado_actual`, `estado_2`) VALUES
-('AJK', '3 DR SOLO', 'ajk1', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', ''),
-('ASDF', 'asdf', 'asdf1', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', ''),
-('DRONE', '3 DR SOLO', 'asdjahskdj', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', ''),
-('DRONE', '3 DR SOLO', 'S1', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', ''),
-('DRONE', '3 DR SOLO', 'S111A5002524', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', ''),
-('DRONE', '3 DR SOLO', 'S111A5A13112', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', '');
+('DRONE', 'asdf', 'asdf1', 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, '', '', 0, '', '15/5/2017'),
+('DRONE', '3 DR SOLO', 'asdjahskdj', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', '15/5/2017'),
+('DRONE', '3 DR SOLO', 'S1', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', '15/5/2017'),
+('DRONE', '3 DR SOLO', 'S111A5002524', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', '15/5/2017'),
+('DRONE', '3 DR SOLO', 'S111A5A13112', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, '', '15/5/2017');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `otros`
+--
+
+CREATE TABLE `otros` (
+  `equipo` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `marca` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `xxx` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `cantidad` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Índices para tablas volcadas
@@ -70,6 +82,12 @@ INSERT INTO `drones` (`equipo`, `modelo_marca`, `num_serie`, `cantidad`, `helice
 --
 ALTER TABLE `drones`
   ADD PRIMARY KEY (`num_serie`);
+
+--
+-- Indices de la tabla `otros`
+--
+ALTER TABLE `otros`
+  ADD PRIMARY KEY (`marca`,`equipo`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
