@@ -8,13 +8,17 @@ package interfaz;
 import bsn.bsnDron;
 import clases.Dron;
 import interfaz.Inventario;
+import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
 
 /**
@@ -34,6 +38,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         lbl_titulo.setText("NUEVO DRON:");
         this.setTitle("NUEVO DRON:");
         txt_fecha_estado.setText(AsignarFecha());
+        Cargar_modeoSpinner();
     }
 
     public nuevo_dron(java.awt.Frame parent, boolean modal, String num_serie) {
@@ -47,6 +52,7 @@ public class nuevo_dron extends javax.swing.JDialog {
         JLabel lbl_estado_act = new JLabel();
         JTextField txt_estado_act = new JTextField();
         txt_fecha_estado.setText(AsignarFecha());
+        Cargar_modeoSpinner();
         //lbl_estado_act.setAlignmentX(0);
     }
 
@@ -114,7 +120,6 @@ public class nuevo_dron extends javax.swing.JDialog {
         lbl_fecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(842, 601));
         setMinimumSize(new java.awt.Dimension(842, 601));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(842, 601));
@@ -260,6 +265,14 @@ public class nuevo_dron extends javax.swing.JDialog {
                 cont_helicesPropertyChange(evt);
             }
         });
+        cont_helices.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cont_helicesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cont_helicesKeyTyped(evt);
+            }
+        });
         jPanel1.add(cont_helices);
         cont_helices.setBounds(120, 320, 50, 30);
         jPanel1.add(cont_control);
@@ -400,12 +413,20 @@ public class nuevo_dron extends javax.swing.JDialog {
     }//GEN-LAST:event_aActionPerformed
 
     private void cont_helicesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cont_helicesPropertyChange
-
+            
     }//GEN-LAST:event_cont_helicesPropertyChange
 
     private void txt_fecha_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fecha_estadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_fecha_estadoActionPerformed
+
+    private void cont_helicesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cont_helicesKeyTyped
+
+    }//GEN-LAST:event_cont_helicesKeyTyped
+
+    private void cont_helicesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cont_helicesKeyReleased
+
+    }//GEN-LAST:event_cont_helicesKeyReleased
 
     /**
      * @param args the command line arguments
@@ -568,4 +589,25 @@ public class nuevo_dron extends javax.swing.JDialog {
       return fecha;
     }
 
+    
+    private SpinnerModel modeloSpinner(){
+        // base, min, max, step
+        SpinnerModel modelo = new SpinnerNumberModel(0, 0, 99, 1);
+        return modelo;
+    }
+    
+    private void Cargar_modeoSpinner(){
+        cont_adap_bateria.setModel(modeloSpinner());
+        cont_adaptador.setModel(modeloSpinner());
+        cont_bateria.setModel(modeloSpinner());
+        cont_cables_usb.setModel(modeloSpinner());
+        cont_cargador.setModel(modeloSpinner());
+        cont_control.setModel(modeloSpinner());
+        cont_enchufe.setModel(modeloSpinner());
+        cont_gimball.setModel(modeloSpinner());
+        cont_helices.setModel(modeloSpinner());
+        cont_helices_repuesto.setModel(modeloSpinner());
+        cont_maleta.setModel(modeloSpinner());
+        cont_protec_helices.setModel(modeloSpinner());
+    }
 }
