@@ -147,6 +147,12 @@ public class nuevo_dron extends javax.swing.JDialog {
         jLabel5.setText("Cantidad: ");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(30, 270, 70, 40);
+
+        txt_cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cantidadKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_cantidad);
         txt_cantidad.setBounds(120, 270, 50, 40);
 
@@ -154,11 +160,26 @@ public class nuevo_dron extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_tipo_equipoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_tipo_equipoKeyTyped(evt);
+            }
         });
         jPanel1.add(txt_tipo_equipo);
         txt_tipo_equipo.setBounds(120, 110, 180, 40);
+
+        txt_marca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_marcaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_marca);
         txt_marca.setBounds(120, 160, 180, 40);
+
+        txt_num_serie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_serieKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_num_serie);
         txt_num_serie.setBounds(120, 220, 180, 40);
 
@@ -301,6 +322,11 @@ public class nuevo_dron extends javax.swing.JDialog {
                 txt_estadoActionPerformed(evt);
             }
         });
+        txt_estado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_estadoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_estado);
         txt_estado.setBounds(630, 440, 160, 30);
 
@@ -320,6 +346,11 @@ public class nuevo_dron extends javax.swing.JDialog {
         txt_fecha_estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_fecha_estadoActionPerformed(evt);
+            }
+        });
+        txt_fecha_estado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fecha_estadoKeyTyped(evt);
             }
         });
         jPanel1.add(txt_fecha_estado);
@@ -376,8 +407,8 @@ public class nuevo_dron extends javax.swing.JDialog {
 
         if (num_serie.equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese n° de serie del producto");
-        } else if ( lbl_titulo.getText().equals("NUEVO DRON:")) {
-            Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado,fecha_estado);
+        } else if (lbl_titulo.getText().equals("NUEVO DRON:")) {
+            Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado, fecha_estado);
             bsn.Agregar(dron);
 
             if (JOptionPane.showConfirmDialog(this, "Agregar otro Producto?") == JOptionPane.OK_OPTION) {
@@ -387,12 +418,12 @@ public class nuevo_dron extends javax.swing.JDialog {
                 inventario = new Inventario();
                 inventario.setVisible(true);
             }
-        }else{
-           Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado, fecha_estado);
-           bsn.Actualizar(dron);
-           this.dispose();
-           inventario = new Inventario();
-           inventario.setVisible(true);
+        } else {
+            Dron dron = new Dron(equipo, marca, num_serie, cant, helices, gimball, bateria, control, adap, maleta, prot_helices, helices_r, usb, cargador, enchufe, adap_bat, obs, otros, estado, fecha_estado);
+            bsn.Actualizar(dron);
+            this.dispose();
+            inventario = new Inventario();
+            inventario.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -413,7 +444,7 @@ public class nuevo_dron extends javax.swing.JDialog {
     }//GEN-LAST:event_aActionPerformed
 
     private void cont_helicesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cont_helicesPropertyChange
-            
+
     }//GEN-LAST:event_cont_helicesPropertyChange
 
     private void txt_fecha_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fecha_estadoActionPerformed
@@ -427,6 +458,47 @@ public class nuevo_dron extends javax.swing.JDialog {
     private void cont_helicesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cont_helicesKeyReleased
 
     }//GEN-LAST:event_cont_helicesKeyReleased
+
+    private void txt_tipo_equipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tipo_equipoKeyTyped
+        if (txt_tipo_equipo.getText().length() > 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_tipo_equipoKeyTyped
+
+    private void txt_marcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_marcaKeyTyped
+        if (txt_marca.getText().length() > 20) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_marcaKeyTyped
+
+    private void txt_num_serieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_serieKeyTyped
+        if (txt_num_serie.getText().length() > 16) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_num_serieKeyTyped
+
+    private void txt_estadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_estadoKeyTyped
+        if (txt_estado.getText().length() > 16) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_estadoKeyTyped
+
+    private void txt_fecha_estadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fecha_estadoKeyTyped
+        if (txt_fecha_estado.getText().length() > 16) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_fecha_estadoKeyTyped
+
+    private void txt_cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cantidadKeyTyped
+        if (Character.isDigit(evt.getKeyChar())){
+        }else{
+            evt.consume();
+        }
+        if (txt_cantidad.getText().length() >= 3) {
+            evt.consume();
+        }
+       
+    }//GEN-LAST:event_txt_cantidadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -581,22 +653,21 @@ public class nuevo_dron extends javax.swing.JDialog {
     }
 
     private String AsignarFecha() {
-      Calendar calendario = Calendar.getInstance();
-      int mes = calendario.get(Calendar.MONTH) +1;
-      String fecha = calendario.get(Calendar.DATE) +"/"+
-                     mes +"/"+
-                    calendario.get(Calendar.YEAR);
-      return fecha;
+        Calendar calendario = Calendar.getInstance();
+        int mes = calendario.get(Calendar.MONTH) + 1;
+        String fecha = calendario.get(Calendar.DATE) + "/"
+                + mes + "/"
+                + calendario.get(Calendar.YEAR);
+        return fecha;
     }
 
-    
-    private SpinnerModel modeloSpinner(){
+    private SpinnerModel modeloSpinner() {
         // base, min, max, step
         SpinnerModel modelo = new SpinnerNumberModel(0, 0, 99, 1);
         return modelo;
     }
-    
-    private void Cargar_modeoSpinner(){
+
+    private void Cargar_modeoSpinner() {
         cont_adap_bateria.setModel(modeloSpinner());
         cont_adaptador.setModel(modeloSpinner());
         cont_bateria.setModel(modeloSpinner());
