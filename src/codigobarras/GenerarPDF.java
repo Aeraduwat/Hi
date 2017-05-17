@@ -19,6 +19,8 @@ import java.io.FileOutputStream;
 import com.itextpdf.text.pdf.Barcode128;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 /**
  *
  * @author HP
@@ -28,27 +30,23 @@ public class GenerarPDF {
     private Font fuenteNormal = new Font(Font.FontFamily.COURIER, 8, Font.NORMAL);
     private Font fuenteItalic = new Font(Font.FontFamily.COURIER, 8, Font.ITALIC);
     
-    public void GenerarPDF(String header, String info, String footer , String rutaImagen, 
-            String Salida, String codigo){
+    public void GenerarPDF(String header,String Salida, JCheckBox[] chk){
     
         try {
             Document document = new Document(PageSize.A7,36,36,10,10);
             PdfWriter pw =  PdfWriter.getInstance(document, new FileOutputStream(Salida));
             document.open();
             document.add(getHeader(header));
-            Image imagen = Image.getInstance(rutaImagen);
-            imagen.scaleAbsolute(100, 100);
-            imagen.setAlignment(Element.ALIGN_CENTER);
-            document.add(imagen);
-            document.add(getInfo(info));
-            document.add(getInfo(" "));
-            document.add(getInfo(" "));
-            document.add(getInfo(" "));
-            document.add(getInfo(" "));
-            document.add(getBardcode(document, pw, codigo));
-            document.add(getFooter(footer)); 
+          //  Image imagen = Image.getInstance(rutaImagen);
+          //  imagen.scaleAbsolute(100, 100);
+          //  imagen.setAlignment(Element.ALIGN_CENTER);
+         //   document.add(imagen);
+            for(int i = 0;i<chk.length;i++){
+                if (chk[i].isSelected()) {
+                    document.add(getBardcode(document, pw, chk[i].getText()));
+                }
+            }
             document.close();
-            
         } catch (Exception e) {
         }
         
@@ -85,14 +83,15 @@ public class GenerarPDF {
     private Image getBardcode(Document document, PdfWriter pw, String codigo){
         PdfContentByte cimg = pw.getDirectContent();
         Barcode128 code128 = new Barcode128();
-        code128.setCode(formatearCodigo(codigo));
+      //  code128.setCode(formatearCodigo(codigo));
+        code128.setCode(codigo);
         code128.setCodeType(Barcode128.CODE128);
         code128.setTextAlignment(Element.ALIGN_CENTER);
         
         Image image = code128.createImageWithBarcode(cimg, BaseColor.BLACK, BaseColor.BLUE);
         float sacler = ((document.getPageSize().getWidth() - document.leftMargin()-document.rightMargin()-0)/ image.getWidth()*60);
         image.scalePercent(sacler);
-        image.setAlignment(Element.ALIGN_CENTER);
+        image.setAlignment(Element.ALIGN_LEFT);
         return image;
     }
     

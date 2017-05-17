@@ -7,7 +7,8 @@ package interfaz;
 
 import bsn.bsnDron;
 import bsn.bsnOtros;
-import dao.daoDron;
+import codigobarras.GenerarPDF;
+import java.io.IOException;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -21,10 +22,12 @@ public class Opciones extends javax.swing.JFrame {
     Inventario_otros otros;
     bsnDron bsnD = new bsnDron();
     bsnOtros bsnO = new bsnOtros();
-    
+    String ruta;
+
     public Opciones() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ruta = System.getProperty("user.home") + "\\Codigos.pdf";
     }
 
     /**
@@ -73,14 +76,14 @@ public class Opciones extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(80, 20, 180, 60);
 
-        jButton3.setText("aj");
+        jButton3.setText("Generar códigos de barra");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(180, 240, 180, 70);
+        jButton3.setBounds(180, 240, 190, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,21 +106,27 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
-       otros = new Inventario_otros();
-       otros.setVisible(true);
-       
+        this.dispose();
+        otros = new Inventario_otros();
+        otros.setVisible(true);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    
-        
-        
         String mensaje = "Marque Productos:";
-        
-        Object[] msg = {mensaje, Check()};
-     //  Object[] msg = {mensaje,bsnO.ObtenerNombres(),bsnD.ObtenerNombres()};
-        JOptionPane.showConfirmDialog(null, msg,"TITULO",JOptionPane.YES_NO_OPTION);
+        JCheckBox[] chk = Check();
+        Object[] msg = {mensaje, chk};
+
+        if (JOptionPane.showConfirmDialog(null, msg) == JOptionPane.OK_OPTION) {
+            GenerarPDF(chk);
+        }
+        if (JOptionPane.showConfirmDialog(null, "¿Desea abrir archivo generado?") == JOptionPane.OK_OPTION) {
+            try {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ruta);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -163,27 +172,35 @@ public class Opciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    
-    public JCheckBox[] Check(){
+    public JCheckBox[] Check() {
         String nombreD[] = new String[bsnD.CantidadNombres()];
         String nombreO[] = new String[bsnO.CantidadNombres()];
         JCheckBox chkBox[] = new JCheckBox[bsnD.CantidadNombres() + bsnO.CantidadNombres()];
-        int i = 0;int j=0;
-        
+        int i = 0;
+        int j = 0;
+
         nombreD = bsnD.ObtenerNombres();
         nombreO = bsnO.ObtenerNombres();
-        
-        while(i< bsnD.CantidadNombres()){
-            chkBox[i] = new JCheckBox(nombreD[i]);add(chkBox[i]);
+
+        while (i < bsnD.CantidadNombres()) {
+            chkBox[i] = new JCheckBox(nombreD[i]);
+            add(chkBox[i]);
             i++;
         }
-        
-        while(j< bsnO.CantidadNombres()){
-            chkBox[i] = new JCheckBox(nombreD[j]);add(chkBox[i]);
-            j++;i++;
+
+        while (j < bsnO.CantidadNombres()) {
+            chkBox[i] = new JCheckBox(nombreD[j]);
+            add(chkBox[i]);
+            j++;
+            i++;
         }
 
         return chkBox;
-        
+
+    }
+
+    private void GenerarPDF(JCheckBox[] chk) {
+        GenerarPDF pdf = new GenerarPDF();
+        pdf.GenerarPDF("Codigos de Barra", ruta, chk);
     }
 }
