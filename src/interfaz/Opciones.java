@@ -189,7 +189,7 @@ public class Opciones extends javax.swing.JFrame {
         }
 
         while (j < bsnO.CantidadNombres()) {
-            chkBox[i] = new JCheckBox(nombreD[j]);
+            chkBox[i] = new JCheckBox(nombreO[j]);
             add(chkBox[i]);
             j++;
             i++;
